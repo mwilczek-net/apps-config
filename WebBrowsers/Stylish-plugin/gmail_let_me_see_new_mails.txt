@@ -1,0 +1,6 @@
+@-moz-document domain("mail.google.com") {
+  html div span.n1 a.n0 {
+    color: #800 !important;
+    background-color: white;
+  }
+}
