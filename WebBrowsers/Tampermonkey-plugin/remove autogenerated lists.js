@@ -33,7 +33,7 @@
             const finalUrl = remainingParams ? `${newUrl}?${remainingParams}` : newUrl;
 
             // Reload the page with the new URL
-            window.location.href = finalUrl;
+            window.location = finalUrl;
         } else {
             console.log('❌ User chose to keep the "list" parameter');
         }
