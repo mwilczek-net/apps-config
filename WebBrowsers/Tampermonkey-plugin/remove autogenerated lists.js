@@ -24,6 +24,7 @@
         if (userResponse) {
             // Remove the "list" parameter
             urlParams.delete("list");
+            urlParams.delete("start_radio");
 
             // Construct new URL without the "list" parameter
             const newUrl = currentUrl.origin + currentUrl.pathname;
