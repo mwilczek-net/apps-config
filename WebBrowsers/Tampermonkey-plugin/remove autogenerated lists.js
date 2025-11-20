@@ -14,19 +14,19 @@
     const currentUrl = new URL(window.location.href);
     const urlParams = new URLSearchParams(currentUrl.search);
 
-    // Check if "list" parameter exists
-    if (urlParams.has("list")) {
-        const listValue = urlParams.get("list");
-
-        // Ask user if they want to remove the "list" parameter
-        const userResponse = confirm(`The URL contains a "list" parameter with value: "${listValue}"\n\nWould you like to remove this parameter from the URL?`);
+    // Check if "start_radio" parameter exists
+    if (urlParams.has("start_radio")) {
+        // Ask user if they want to remove the "start_radio" parameter
+        const userResponse = confirm(
+            `The URL contains a "start_radio" parameter"\n\nWould you like to remove both "start_radio" and "list" parameters from the URL?`
+        );
 
         if (userResponse) {
-            // Remove the "list" parameter
+            // Remove both parameters
             urlParams.delete("list");
             urlParams.delete("start_radio");
 
-            // Construct new URL without the "list" parameter
+            // Construct new URL without the parameters
             const newUrl = currentUrl.origin + currentUrl.pathname;
             const remainingParams = urlParams.toString();
 
@@ -36,9 +36,9 @@
             // Reload the page with the new URL
             window.location = finalUrl;
         } else {
-            console.log('❌ User chose to keep the "list" parameter');
+            console.log('❌ User chose to keep the "start_radio" parameter');
         }
     } else {
-        console.log('ℹ️ No "list" parameter found in URL');
+        console.log('ℹ️ No "start_radio" parameter found in URL');
     }
 })();
