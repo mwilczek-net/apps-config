@@ -15,30 +15,32 @@
     const urlParams = new URLSearchParams(currentUrl.search);
 
     // Check if "start_radio" parameter exists
-    if (urlParams.has("start_radio")) {
-        // Ask user if they want to remove the "start_radio" parameter
-        const userResponse = confirm(
-            `The URL contains a "start_radio" parameter"\n\nWould you like to remove both "start_radio" and "list" parameters from the URL?`
-        );
-
-        if (userResponse) {
-            // Remove both parameters
-            urlParams.delete("list");
-            urlParams.delete("start_radio");
-
-            // Construct new URL without the parameters
-            const newUrl = currentUrl.origin + currentUrl.pathname;
-            const remainingParams = urlParams.toString();
-
-            // Add remaining parameters if any exist
-            const finalUrl = remainingParams ? `${newUrl}?${remainingParams}` : newUrl;
-
-            // Reload the page with the new URL
-            window.location = finalUrl;
-        } else {
-            console.log('❌ User chose to keep the "start_radio" parameter');
-        }
-    } else {
+    if (!urlParams.has("start_radio")) {
         console.log('ℹ️ No "start_radio" parameter found in URL');
+        return;
     }
+
+    // Ask user if they want to remove the "start_radio" parameter
+    const userResponse = confirm(
+        `The URL contains a "start_radio" parameter"\n\nWould you like to remove both "start_radio" and "list" parameters from the URL?`
+    );
+
+    if (!userResponse) {
+        console.log('❌ User chose to keep the "start_radio" parameter');
+        return;
+    }
+
+    // Remove both parameters
+    urlParams.delete("list");
+    urlParams.delete("start_radio");
+
+    // Construct new URL without the parameters
+    const newUrl = currentUrl.origin + currentUrl.pathname;
+    const remainingParams = urlParams.toString();
+
+    // Add remaining parameters if any exist
+    const finalUrl = remainingParams ? `${newUrl}?${remainingParams}` : newUrl;
+
+    // Reload the page with the new URL
+    window.location = finalUrl;
 })();
