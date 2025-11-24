@@ -1,0 +1,14 @@
+@-moz-document url-prefix("https://www.gocomics.com/") {
+
+@keyframes cssAnimationPayWall {
+    to {
+        visibility: hidden;
+    }
+}
+
+[data-paywall="roll-up"] {
+    visibility: hidden;
+    animation: cssAnimationPayWall 0s ease-in 1s forwards;
+}
+
+}
